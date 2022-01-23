@@ -1,0 +1,119 @@
+.app {
+    height: 100vh;
+    background: rgb(218, 209, 209)
+}
+
+/* CHATROOMS */
+.chatrooms {
+    border: red solid 1px;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* CONTACT LIST */
+.contact-list {
+    width: 40%;
+    border: red solid 1px;
+    height: 100%;
+}
+
+.contact-list__profile {
+    border: red solid 1px;
+    /* background-image: url('../photos/avt.jpg');
+    background-size: cover;
+    background-repeat: no-repeat; */
+    width: 100%;
+    /* border-radius: 100%; */
+}
+
+.contact-list__profile>img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.contact-list__search {
+    border: red solid 1px;
+}
+
+.contact-list__search>input {
+    outline: none;
+    border: none;
+}
+
+.contact-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-item {
+    height: 100px;
+    display: flex;
+    border: red solid 1px;
+
+}
+
+.contact-item__img>img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.contact-item__content {
+    border: red solid 1px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-item__timestamp {
+    border: red solid 1px;
+}
+
+
+
+
+/* CONVERSATIONS */
+.conversations {
+    flex: 1;
+}
+
+.converstations__profileHeader {
+    display: flex;
+    border: red solid 1px;
+}
+
+.converstations__profileHeader>img {
+    width: 50px;
+    height: 50px;
+}
+
+.chatbox>input {
+    outline: none;
+    border: none;
+}
+
+.conversations__messageContainer {
+    height: 70vh;
+    overflow-y: auto;
+}
+
+.message-wrapper {
+    border: red solid 1px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.message {
+    max-width: 50%;
+    border: red solid 1px;
+
+}
+
+.message-wrapper__receiver {
+    justify-content: flex-start;
+}
