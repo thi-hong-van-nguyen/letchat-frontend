@@ -49,7 +49,7 @@ function Header(props) {
 				}}
 			>
 				<Link to='/home'>Home</Link>
-				<Link to='/chat-rooms'>Chat Rooms</Link>
+				<Link to={user ? '/chat-rooms' : '/login'}>Chat Rooms</Link>
 				{user ? (
 					<div>
 						<img

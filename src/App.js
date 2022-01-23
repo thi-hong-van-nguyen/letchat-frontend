@@ -18,8 +18,7 @@ function App(props) {
 	const { updateLoginCall } = props;
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'));
-
-		if (user) {
+		const getLoggedInUser = () => {
 			axios()
 				.get(`/api/users/${user._id}`)
 				.then((res) => {
@@ -27,6 +26,10 @@ function App(props) {
 					localStorage.setItem('user', JSON.stringify(res.data));
 				})
 				.catch((err) => navigate('/logout'));
+		};
+
+		if (user) {
+			getLoggedInUser();
 		}
 	}, []);
 

@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import defaultProfilePic from '../../photos/defaultProfilePic.jpg';
 import { connect } from 'react-redux';
+import axios from '../../axios';
+import Conversation from './Conversation';
 
 function ContactListContainer(props) {
-	const { user } = props;
+	const { user, setCurrentChat } = props;
+	const [conversations, setConversations] = useState([]);
 
-	console.log(props.contactList);
+	useEffect(() => {
+		const getConversations = () => {
+			axios()
+				.get(`/api/conversations/${user?._id}`)
+				.then((res) => setConversations(res.data))
+				.catch((err) => console.log(err));
+		};
+
+		getConversations();
+	}, [user]);
+
+	console.log(conversations);
 	console.log('CONTACTLIST renders ======>', user);
 	return (
 		<div className='contact-list'>
 			{/* USER PIC */}
 			<div className='contact-list__profile'>
 				<img
-					src={user.profilePic ? user.profilePic : defaultProfilePic}
+					src={user?.profilePic ? user.profilePic : defaultProfilePic}
 					alt=''
 				/>
 			</div>
@@ -26,28 +40,19 @@ function ContactListContainer(props) {
 
 			{/* CONTACT LIST */}
 			<div className='contact-items'>
-				{props.contactList.map((userData, idx) => (
-					<div
-						className='contact-item'
-						key={idx}
-						onClick={() => props.setChat(userData)}
-					>
-						<div className='contact-item__img'>
-							<img src={userData.profilePic} alt='' />
-						</div>
-						<div className='contact-item__content'>
-							<span className='contact-item__content--line1'>
-								{userData.name}
-							</span>
-							<span className='contact-item__content--line2'>
-								{userData.lastText}
-							</span>
-						</div>
-						<div className='contact-item__timestamp'>
-							{userData.lastTextTime}
-						</div>
-					</div>
-				))}
+				{conversations.length > 0 ? (
+					conversations.map((conversation, idx) => (
+						// <div key={idx} onClick={() => setCurrentChat(conversation)}>
+						<Conversation
+							key={idx}
+							conversation={conversation}
+							setCurrentChat={setCurrentChat}
+						/>
+						// </div>
+					))
+				) : (
+					<></>
+				)}
 			</div>
 		</div>
 	);
